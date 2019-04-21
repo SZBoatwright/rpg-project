@@ -6,7 +6,7 @@ public class FollowCamera : MonoBehaviour
 {
   [SerializeField] Transform target;
 
-  void Update()
+  void LateUpdate()
   {
     gameObject.transform.position = target.position;
   }
