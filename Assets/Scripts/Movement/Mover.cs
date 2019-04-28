@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,6 +27,12 @@ namespace RPG.Movement
     {
       navMeshAgent.destination = destination;
       navMeshAgent.isStopped = false;
+    }
+
+    public void StartMoveAction(Vector3 destination)
+    {
+      MoveTo(destination);
+      GetComponent<Fighter>().Cancel();
     }
 
     public void Stop()
