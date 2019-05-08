@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Movement;
+using RPG.Core;
 
 namespace RPG.Combat
 {
@@ -18,7 +19,10 @@ namespace RPG.Combat
     private void Update()
     {
       if (target != null && !GetIsInRange()) mover.MoveTo(target.position);
-      else mover.Stop();
+      else
+      {
+        mover.Stop();
+      }
     }
 
     private bool GetIsInRange()
@@ -28,6 +32,7 @@ namespace RPG.Combat
 
     public void Attack(CombatTarget combatTarget)
     {
+      GetComponent<ActionScheduler>().StartAction(mover);
       target = combatTarget.transform;
     }
 
