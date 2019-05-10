@@ -5,7 +5,7 @@ using RPG.Core;
 
 namespace RPG.Combat
 {
-  public class Fighter : MonoBehaviour
+  public class Fighter : MonoBehaviour, IAction
   {
     [SerializeField] float weaponRange = 2f;
     Transform target;
@@ -21,7 +21,7 @@ namespace RPG.Combat
       if (target != null && !GetIsInRange()) mover.MoveTo(target.position);
       else
       {
-        mover.Stop();
+        mover.Cancel();
       }
     }
 
@@ -32,7 +32,7 @@ namespace RPG.Combat
 
     public void Attack(CombatTarget combatTarget)
     {
-      GetComponent<ActionScheduler>().StartAction(mover);
+      GetComponent<ActionScheduler>().StartAction(this);
       target = combatTarget.transform;
     }
 
