@@ -18,11 +18,19 @@ namespace RPG.Combat
 
     private void Update()
     {
-      if (target != null && !GetIsInRange()) mover.MoveTo(target.position);
+      if (target == null) return;
+
+      if (!GetIsInRange()) mover.MoveTo(target.position);
       else
       {
         mover.Cancel();
+        AttackBehavior();
       }
+    }
+
+    private void AttackBehavior()
+    {
+      GetComponent<Animator>().SetTrigger("attack");
     }
 
     private bool GetIsInRange()
@@ -39,6 +47,11 @@ namespace RPG.Combat
     public void Cancel()
     {
       target = null;
+    }
+
+    // animation event
+    void Hit()
+    {
     }
   }
 }
