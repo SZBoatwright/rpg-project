@@ -41,7 +41,7 @@ namespace RPG.Combat
       if (timeSinceLastAttack > timeBetweenAttacks)
       {
         TriggerAttack();
-        timeSinceLastAttack = 0;
+        timeSinceLastAttack = Mathf.Infinity;
       }
     }
 
